@@ -8,6 +8,8 @@
 #! specify directory of LIBFEC source tree
 SRC = ../libfec
 
+OS := $(shell uname)
+
 ifeq ($(OS),Windows_NT)
     INSTALL = ../win32
 else
@@ -20,7 +22,7 @@ else
 	CONFIGURE_ARGS =
 endif
 
-TARGET = libfec.so libfec.a
+TARGET = libfec.a
 
 all :
 	DIR=`pwd`; \
@@ -30,7 +32,7 @@ all :
 	mv makefile.p makefile; \
 	make; \
 	cd $$DIR; \
-	cp $(SRC)/libfec.so $(SRC)/libfec.a .
+	cp $(SRC)/libfec.a .
 
 clean:
 	DIR=`pwd`; \
