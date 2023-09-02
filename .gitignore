@@ -7,3 +7,4 @@ pocket_dump
 pocket_scan
 pocket_trk
 *.bin
+__pycache__
