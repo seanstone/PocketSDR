@@ -1,3 +1,6 @@
 [submodule "lib/LDPC-codes"]
 	path = lib/LDPC-codes
 	url = https://github.com/radfordneal/LDPC-codes.git
+[submodule "lib/libfec"]
+	path = lib/libfec
+	url = https://github.com/quiet/libfec
