@@ -1,0 +1,6 @@
+*.o
+*.a
+*.so
+pocket_acq
+pocket_conf
+pocket_dump
