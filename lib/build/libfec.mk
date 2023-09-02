@@ -14,12 +14,18 @@ else
     INSTALL = ../linux
 endif
 
+ifeq ($(OS),Darwin)
+	CONFIGURE_ARGS = --build=x86_64-apple-darwin
+else
+	CONFIGURE_ARGS =
+endif
+
 TARGET = libfec.so libfec.a
 
 all :
 	DIR=`pwd`; \
 	cd $(SRC); \
-	./configure; \
+	./configure $(CONFIGURE_ARGS); \
 	sed 's/-lc//' < makefile > makefile.p; \
 	mv makefile.p makefile; \
 	make; \
