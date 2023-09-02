@@ -7,9 +7,15 @@ CC = gcc
 SRC = ../../src
 BIN = ../../bin
 
-INCLUDE =
-OPTIONS =
-LDLIBS = -static -lusb-1.0
+ifeq ($(OS),Windows_NT)
+    INCLUDE = -I$(SRC) -I$(LIB)/cyusb
+    OPTIONS = -DWIN32
+    LDLIBS = -static $(LIB)/cyusb/CyAPI.a -lsetupapi -lavrt -lwinmm
+else
+    INCLUDE = -I$(SRC)
+    OPTIONS =
+    LDLIBS = -lusb-1.0 -lpthread
+endif
 
 WARNOPT = -Wall -Wextra
 
