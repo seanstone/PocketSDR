@@ -173,6 +173,11 @@ sudo to execute pocket_conf, pocket_dump like:
    $ sudo pocket_conf ../conf/pocket_L1L6_12MHz.conf
    $ sudo pocket_dump -t 10 ch1.bin ch2.bin
 ```
+* Install python and packages
+```
+   $ brew install python
+   $ pip install numpy matplotlib
+```
 
 --------------------------------------------------------------------------------
 
