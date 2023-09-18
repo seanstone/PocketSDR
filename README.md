@@ -145,7 +145,7 @@ sudo to execute pocket_conf, pocket_dump like:
 ```
 * Install pkg-config
 ```
-    $ brew install pkgconfig
+    $ brew install pkg-config
 ```
 * Install fftw developtment package.
 ```
