@@ -176,7 +176,7 @@ sudo to execute pocket_conf, pocket_dump like:
 * Install python and packages
 ```
    $ brew install python
-   $ pip install numpy matplotlib
+   $ pip install numpy matplotlib scipy
 ```
 
 --------------------------------------------------------------------------------
