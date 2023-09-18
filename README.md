@@ -147,6 +147,10 @@ sudo to execute pocket_conf, pocket_dump like:
 ```
     $ brew install pkg-config
 ```
+* Install libusb-1.0 developtment package. For Ubuntu:
+```
+    $ brew install libusb
+```
 * Install fftw developtment package.
 ```
     $ brew install fftw
