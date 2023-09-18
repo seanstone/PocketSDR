@@ -133,6 +133,45 @@ sudo to execute pocket_conf, pocket_dump like:
 
 --------------------------------------------------------------------------------
 
+## **Installation for macOS**
+
+* Clone from this repo from ssh
+```
+    $ git clone git@github.com:tclin0122/PocketSDR.git
+```
+* Cd in to the file diection and get dependencies via git submodules
+```
+    $ git submodule update --init --recursive
+```
+* Install pkg-config
+```
+    $ brew install pkgconfig
+```
+* Install fftw developtment package.
+```
+    $ brew install fftw
+```
+* Move to the library directory, build libraries.
+```
+    $ cd <install_dir>/lib/build
+    $ make
+    $ make install
+```
+* Move to the source program directory, build utilities and APs.
+```
+    $ cd <install_dir>/app
+    $ make
+    $ make install
+```
+* Usually you need to have root permission to access USB devices. So you add
+sudo to execute pocket_conf, pocket_dump like:
+```
+   $ sudo pocket_conf ../conf/pocket_L1L6_12MHz.conf
+   $ sudo pocket_dump -t 10 ch1.bin ch2.bin
+```
+
+--------------------------------------------------------------------------------
+
 ## **Utility Programs for RF frontend**
 
 Pocket SDR contains the following utility programs.
