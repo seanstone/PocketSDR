@@ -89,9 +89,13 @@ PocketSDR --+-- bin     Pocket SDR utilities and APs binary programs for Windows
 
 ## **Installation for Linux**
 
-* Extract PocketSDR.zip to an appropriate directory <install_dir>.
+* Clone from this repo from ssh
 ```
-    $ unzip PocketSDR.zip
+    $ git clone git@github.com:tclin0122/PocketSDR.git
+```
+* Cd in to the file diection and get dependencies via git submodules
+```
+    $ git submodule update --init --recursive
 ```
 * Install libusb-1.0 developtment package. For Ubuntu:
 ```
@@ -114,8 +118,12 @@ PocketSDR --+-- bin     Pocket SDR utilities and APs binary programs for Windows
     $ make install
 ```
 * Add the Pocket SDR binary programs path (<install_dir>/PocketSDR/bin) to 
-  the command search path.
+  the command search path. (need to set path in visudo to make the command be able to run with sudo)
+```
+    $ sudo visudo
 
+    Defaults secure_path=... :your/bin/path/here"
+```
 * Usually you need to have root permission to access USB devices. So you add
 sudo to execute pocket_conf, pocket_dump like:
 ```
@@ -158,32 +166,32 @@ These were built for Windows (64bit) and Linux for x86_64 CPU.
 
 --------------------------------------------------------------------------------
 
-## **Execution Examples of Utility Programs and GNSS-SDR APs**
+## **Execution Examples of Utility Programs and GNSS-SDR APs (without seting udev rules)** 
 
 ```
-    $ pocket_conf
+    $ sudo ./bin/pocket_conf
     ...
-    $ pocket_conf conf/pocket_L1L6_12MHz.conf
+    $ sudo ./bin/pocket_conf conf/pocket_L1L6_12MHz.conf
     Pocket SDR device settings are changed.
     
-    $ pocket_dump -t 5 ch1.bin ch2.bin
+    $ sudo ./pocket_dump -t 5 ch1.bin ch2.bin
       TIME(s)    T   CH1(Bytes)   T   CH2(Bytes)   RATE(Ks/s)
           5.0    I     59768832  IQ    119537664      11922.8
     
-    $ pocket_psd.py ch1.bin -f 12 -h
-    $ pocket_acq.py ch1.bin -f 12 -fi 3 -sig L1CA -prn 1-32,193-199
+    $ python3 ./python/pocket_psd.py ch1.bin -f 12 -h
+    $ python3 ./python/pocket_acq.py ch1.bin -f 12 -fi 3 -sig L1CA -prn 1-32,193-199
     PRN   1: SIG= L1CA, COFF=  0.12817 ms, DOP=  3500 Hz, C/N0= 37.4 dB-Hz
     PRN   2: SIG= L1CA, COFF=  0.85242 ms, DOP= -3500 Hz, C/N0= 36.8 dB-Hz
     PRN   3: SIG= L1CA, COFF=  0.39400 ms, DOP= -2000 Hz, C/N0= 37.0 dB-Hz
     PRN   4: SIG= L1CA, COFF=  0.96692 ms, DOP=  2000 Hz, C/N0= 44.7 dB-Hz
     ...
-    $ pocket_acq.py ch1.bin -f 12 -fi 3 -sig L1CA -prn 26
+    $ python3 ./python/pocket_acq.py ch1.bin -f 12 -fi 3 -sig L1CA -prn 26
 
-    $ pocket_acq.py ch1.bin -f 12 -fi 3 -sig L1CA -prn 26 -3d
+    $ python3 ./python/pocket_acq.py ch1.bin -f 12 -fi 3 -sig L1CA -prn 26 -3d
 
-    $ pocket_acq.py ch2.bin -f 12 -sig L6D -prn 194 -p
+    $ python3 ./python/pocket_acq.py ch2.bin -f 12 -sig L6D -prn 194 -p
     
-    $ pocket_trk.py L1_24M.bin -prn 1-32 -f 24 -fi 6
+    $ python3 ./python/pocket_trk.py L1_24M.bin -prn 1-32 -f 24 -fi 6
 	  TIME(s)   SIG  PRN  STATE   LOCK(s)  C/N0 (dB-Hz)        COFF(ms)   DOP(Hz)   ADR(cyc)  SYNC #NAV #ERR
 	    1.550  L1CA    1   LOCK     1.539  42.5 ||||||||      0.8017699    3218.8     4949.3  ---     0    0
 	    0.011  L1CA    2   IDLE     0.000   0.0               0.0000000       0.0        0.0  ---     0    0
@@ -196,9 +204,9 @@ These were built for Windows (64bit) and Linux for x86_64 CPU.
 	    0.011  L1CA    9   IDLE     0.000   0.0               0.0000000       0.0        0.0  ---     0    0
 	    1.550  L1CA   10   LOCK     1.539  38.6 |||||         0.8658548      -6.2       -9.4  ---     0    0
 	...
-    $ pocket_trk.py L1_24M.bin -prn 194 -sig L1CA -f 24 -fi 6 -log trk.log  -p
+    $ python3 ./python/pocket_trk.py L1_24M.bin -prn 194 -sig L1CA -f 24 -fi 6 -log trk.log  -p
     ...
-    $ pocket_trk.py L5_24M.bin -prn 13 -sig E5AI -f 24 -log trk.log -p -ts 0.2
+    $ python3 ./python/pocket_trk.py L5_24M.bin -prn 13 -sig E5AI -f 24 -log trk.log -p -ts 0.2
     ...
 ``` 
 

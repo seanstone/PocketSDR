@@ -8,5 +8,5 @@
 	ignore = dirty
 [submodule "lib/RTKLIB"]
 	path = lib/RTKLIB
-	url = https://github.com/seanstone5923/RTKLIB
+	url = https://github.com/seanstone/RTKLIB
 	ignore = dirty
