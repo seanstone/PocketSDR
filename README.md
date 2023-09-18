@@ -137,7 +137,7 @@ sudo to execute pocket_conf, pocket_dump like:
 
 * Clone from this repo from ssh
 ```
-    $ git clone git@github.com:tclin0122/PocketSDR.git
+    $ git clone git@github.com:seanstone/PocketSDR.git
 ```
 * Cd in to the file diection and get dependencies via git submodules
 ```
