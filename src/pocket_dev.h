@@ -23,7 +23,7 @@
 #include <CyAPI.h>
 #else
 #include <pthread.h>
-#include <libusb-1.0/libusb.h>
+#include <libusb.h>
 #endif // WIN32
 
 #ifdef __cplusplus

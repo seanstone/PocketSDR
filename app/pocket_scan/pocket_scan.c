@@ -11,7 +11,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include <libusb-1.0/libusb.h>
+#include <libusb.h>
 
 // constants and macros ----------------------------------------------------------------
 #define PROG_NAME       "pocket_scan" // program name
