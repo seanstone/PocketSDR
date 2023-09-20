@@ -160,7 +160,7 @@ sudo to execute pocket_conf, pocket_dump like:
    $ brew install python
    $ pip install numpy matplotlib scipy
 ```
-* Move to the library directory, build libraries, utilities and APs.
+* Build libraries, utilities and APs.
 ```
     $ make -j
 ```
