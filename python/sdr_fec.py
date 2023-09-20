@@ -30,7 +30,7 @@ try:
     elif 'Linux' in env:
         libfec = cdll.LoadLibrary(dir + '/../lib/linux/libfec.so')
     else:
-        raise
+        libfec = cdll.LoadLibrary(dir + '/../lib/linux/libfec.dylib')
 except:
     print('load libfec.so error (%s)' % (env))
     exit()

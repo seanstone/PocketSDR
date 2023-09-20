@@ -10,6 +10,8 @@ CC = gcc
 #! specify directory of RTKLIB source tree
 SRC = ../RTKLIB/src
 
+OS := $(shell uname)
+
 ifeq ($(OS),Windows_NT)
     INSTALL = ../win32
     OPTIONS= -DENAGLO -DENAGAL -DENAQZS -DENACMP -DENAIRN -DNFREQ=5 -DEXOBS=3 -DSVR_REUSEADDR -DTRACE -DWIN32
@@ -32,11 +34,15 @@ OBJ = rtkcmn.o tides.o rtksvr.o rtkpos.o postpos.o geoid.o solution.o lambda.o s
       novatel.o ublox.o ss2.o crescent.o skytraq.o javad.o nvs.o binex.o rt17.o septentrio.o \
       rtklib_wrap.o
 
+ifeq ($(OS),Darwin)
+TARGET = librtk.dylib librtk.a
+else
 TARGET = librtk.so librtk.a
+endif
 
 all : $(TARGET)
 
-librtk.so : $(OBJ)
+librtk.dylib librtk.so : $(OBJ)
 	$(CC) -shared -o $@ $(OBJ) $(LDLIBS)
 
 librtk.a  : $(OBJ)

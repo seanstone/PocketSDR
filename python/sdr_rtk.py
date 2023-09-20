@@ -29,8 +29,10 @@ env = platform.platform()
 dir = os.path.dirname(__file__)
 if 'Windows' in env:
     librtk = cdll.LoadLibrary(dir + '/../lib/win32/librtk.so')
-else:
+elif 'Linux' in env:
     librtk = cdll.LoadLibrary(dir + '/../lib/linux/librtk.so')
+else:
+    librtk = cdll.LoadLibrary(dir + '/../lib/linux/librtk.dylib')
 
 # get constant -----------------------------------------------------------------
 def get_const_int(name):

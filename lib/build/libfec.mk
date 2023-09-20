@@ -22,7 +22,11 @@ else
 	CONFIGURE_ARGS =
 endif
 
-TARGET = libfec.a
+ifeq ($(OS),Darwin)
+TARGET = libfec.a libfec.dylib
+else
+TARGET = libfec.a libfec.so
+endif
 
 all :
 	DIR=`pwd`; \
@@ -32,7 +36,7 @@ all :
 	mv makefile.p makefile; \
 	make; \
 	cd $$DIR; \
-	cp $(SRC)/libfec.a .
+	cd $(SRC) && for file in $(TARGET); do cp $$file ../build; done
 
 clean:
 	DIR=`pwd`; \

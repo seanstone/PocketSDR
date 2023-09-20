@@ -8,3 +8,4 @@ pocket_scan
 pocket_trk
 *.bin
 __pycache__
+*.dylib

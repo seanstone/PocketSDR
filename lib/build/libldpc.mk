@@ -10,6 +10,8 @@ CC  = gcc
 #! specify directory of LDPC-codes source tree
 SRC = ../LDPC-codes
 
+OS := $(shell uname)
+
 ifeq ($(OS),Windows_NT)
     INSTALL = ../win32
 else
@@ -24,11 +26,15 @@ OBJ = rcode.o channel.o dec.o enc.o alloc.o intio.o blockio.o \
       check.o open.o mod2dense.o mod2sparse.o mod2convert.o \
       distrib.o rand.o
 
+ifeq ($(OS),Darwin)
+TARGET = libldpc.dylib libldpc.a
+else
 TARGET = libldpc.so libldpc.a
+endif
 
 all: $(TARGET)
 
-libldpc.so : $(OBJ)
+libldpc.dylib libldpc.so: $(OBJ)
 	$(CC) -shared -o $@ $(OBJ)
 
 libldpc.a : $(OBJ)

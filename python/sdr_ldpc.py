@@ -33,7 +33,7 @@ try:
     elif 'Linux' in env:
         libldpc = cdll.LoadLibrary(dir + '/../lib/linux/libldpc.so')
     else:
-        raise
+        libldpc = cdll.LoadLibrary(dir + '/../lib/linux/libldpc.dylib')
 except:
     print('load libldpc.so error (%s)' % (env))
     exit()
