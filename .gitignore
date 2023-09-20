@@ -10,3 +10,6 @@ pocket_trk
 __pycache__
 *.dylib
 *.log
+.profile
+.bashrc
+.bashrc.swap
