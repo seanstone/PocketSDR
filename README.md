@@ -160,23 +160,9 @@ sudo to execute pocket_conf, pocket_dump like:
    $ brew install python
    $ pip install numpy matplotlib scipy
 ```
-* Move to the library directory, build libraries.
+* Move to the library directory, build libraries, utilities and APs.
 ```
-    $ cd <install_dir>/lib/build
-    $ make
-    $ make install
-```
-* Move to the source program directory, build utilities and APs.
-```
-    $ cd <install_dir>/app
-    $ make
-    $ make install
-```
-* Usually you need to have root permission to access USB devices. So you add
-sudo to execute pocket_conf, pocket_dump like:
-```
-   $ sudo pocket_conf ../conf/pocket_L1L6_12MHz.conf
-   $ sudo pocket_dump -t 10 ch1.bin ch2.bin
+    $ make -j
 ```
 
 --------------------------------------------------------------------------------
