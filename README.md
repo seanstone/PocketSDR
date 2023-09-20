@@ -105,30 +105,9 @@ PocketSDR --+-- bin     Pocket SDR utilities and APs binary programs for Windows
 ```
     $ sudo apt install libfftw3-dev
 ```
-* Move to the library directory, build libraries.
+* Build libraries, utilities and APs.
 ```
-    $ cd <install_dir>/lib/build
-    $ make
-    $ make install
-```
-* Move to the source program directory, build utilities and APs.
-```
-    $ cd <install_dir>/app
-    $ make
-    $ make install
-```
-* Add the Pocket SDR binary programs path (<install_dir>/PocketSDR/bin) to 
-  the command search path. (need to set path in visudo to make the command be able to run with sudo)
-```
-    $ sudo visudo
-
-    Defaults secure_path=... :your/bin/path/here"
-```
-* Usually you need to have root permission to access USB devices. So you add
-sudo to execute pocket_conf, pocket_dump like:
-```
-   $ sudo pocket_conf ../conf/pocket_L1L6_12MHz.conf
-   $ sudo pocket_dump -t 10 ch1.bin ch2.bin
+    $ make -j
 ```
 
 --------------------------------------------------------------------------------
