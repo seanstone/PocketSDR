@@ -184,10 +184,10 @@ These were built for Windows (64bit) and Linux for x86_64 CPU.
 ```
     $ sudo ./bin/pocket_conf
     ...
-    $ sudo ./bin/pocket_conf conf/pocket_L1L6_12MHz.conf
+    $ sudo ./bin/pocket_conf ./conf/pocket_L1L6_12MHz.conf
     Pocket SDR device settings are changed.
     
-    $ sudo ./pocket_dump -t 5 ch1.bin ch2.bin
+    $ sudo ./bin/pocket_dump -t 5 ch1.bin ch2.bin
       TIME(s)    T   CH1(Bytes)   T   CH2(Bytes)   RATE(Ks/s)
           5.0    I     59768832  IQ    119537664      11922.8
     
