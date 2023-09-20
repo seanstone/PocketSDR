@@ -91,7 +91,7 @@ PocketSDR --+-- bin     Pocket SDR utilities and APs binary programs for Windows
 
 * Clone from this repo from ssh
 ```
-    $ git clone git@github.com:tclin0122/PocketSDR.git
+    $ git clone git@github.com:seanstone/PocketSDR.git
 ```
 * Cd in to the file diection and get dependencies via git submodules
 ```
@@ -155,6 +155,11 @@ sudo to execute pocket_conf, pocket_dump like:
 ```
     $ brew install fftw
 ```
+* Install python and packages
+```
+   $ brew install python
+   $ pip install numpy matplotlib scipy
+```
 * Move to the library directory, build libraries.
 ```
     $ cd <install_dir>/lib/build
@@ -172,11 +177,6 @@ sudo to execute pocket_conf, pocket_dump like:
 ```
    $ sudo pocket_conf ../conf/pocket_L1L6_12MHz.conf
    $ sudo pocket_dump -t 10 ch1.bin ch2.bin
-```
-* Install python and packages
-```
-   $ brew install python
-   $ pip install numpy matplotlib scipy
 ```
 
 --------------------------------------------------------------------------------
