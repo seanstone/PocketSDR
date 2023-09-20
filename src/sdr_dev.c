@@ -255,7 +255,7 @@ sdr_dev_t *sdr_dev_open(int bus, int port)
         return NULL;
     }
     for (int i = 0; i < SDR_MAX_BUFF; i++) {
-#if 1
+#if !__APPLE__
         dev->data[i] = libusb_dev_mem_alloc(dev->usb, SDR_SIZE_BUFF);
 #else
         dev->data[i] = (uint8_t *)malloc(SDR_SIZE_BUFF);
