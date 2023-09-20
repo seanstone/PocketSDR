@@ -173,7 +173,10 @@ static void transfer_cb(struct libusb_transfer *transfer)
     sdr_dev_t *dev = (sdr_dev_t *)transfer->user_data;
     
     if (transfer->status != LIBUSB_TRANSFER_COMPLETED) {
-        fprintf(stderr, "USB bulk transfer error (%d)\n", transfer->status);
+        if (transfer->status == LIBUSB_TRANSFER_OVERFLOW)
+            fprintf(stderr, "USB bulk transfer error (LIBUSB_TRANSFER_OVERFLOW)\n");
+        else
+            fprintf(stderr, "USB bulk transfer error (%d)\n", transfer->status);
     }
     else if (!write_buff(dev, transfer->buffer)) {
         fprintf(stderr, "USB bulk transfer buffer overflow\n");
