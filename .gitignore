@@ -13,3 +13,4 @@ __pycache__
 .profile
 .bashrc
 .bashrc.swap
+.vscode/
