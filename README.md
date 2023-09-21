@@ -105,30 +105,9 @@ PocketSDR --+-- bin     Pocket SDR utilities and APs binary programs for Windows
 ```
     $ sudo apt install libfftw3-dev
 ```
-* Move to the library directory, build libraries.
+* Build libraries, utilities and APs.
 ```
-    $ cd <install_dir>/lib/build
-    $ make
-    $ make install
-```
-* Move to the source program directory, build utilities and APs.
-```
-    $ cd <install_dir>/app
-    $ make
-    $ make install
-```
-* Add the Pocket SDR binary programs path (<install_dir>/PocketSDR/bin) to 
-  the command search path. (need to set path in visudo to make the command be able to run with sudo)
-```
-    $ sudo visudo
-
-    Defaults secure_path=... :your/bin/path/here"
-```
-* Usually you need to have root permission to access USB devices. So you add
-sudo to execute pocket_conf, pocket_dump like:
-```
-   $ sudo pocket_conf ../conf/pocket_L1L6_12MHz.conf
-   $ sudo pocket_dump -t 10 ch1.bin ch2.bin
+    $ make -j
 ```
 
 --------------------------------------------------------------------------------
@@ -160,23 +139,9 @@ sudo to execute pocket_conf, pocket_dump like:
    $ brew install python
    $ pip install numpy matplotlib scipy
 ```
-* Move to the library directory, build libraries.
+* Build libraries, utilities and APs.
 ```
-    $ cd <install_dir>/lib/build
-    $ make
-    $ make install
-```
-* Move to the source program directory, build utilities and APs.
-```
-    $ cd <install_dir>/app
-    $ make
-    $ make install
-```
-* Usually you need to have root permission to access USB devices. So you add
-sudo to execute pocket_conf, pocket_dump like:
-```
-   $ sudo pocket_conf ../conf/pocket_L1L6_12MHz.conf
-   $ sudo pocket_dump -t 10 ch1.bin ch2.bin
+    $ make -j
 ```
 
 --------------------------------------------------------------------------------
@@ -219,10 +184,10 @@ These were built for Windows (64bit) and Linux for x86_64 CPU.
 ```
     $ sudo ./bin/pocket_conf
     ...
-    $ sudo ./bin/pocket_conf conf/pocket_L1L6_12MHz.conf
+    $ sudo ./bin/pocket_conf ./conf/pocket_L1L6_12MHz.conf
     Pocket SDR device settings are changed.
     
-    $ sudo ./pocket_dump -t 5 ch1.bin ch2.bin
+    $ sudo ./bin/pocket_dump -t 5 ch1.bin ch2.bin
       TIME(s)    T   CH1(Bytes)   T   CH2(Bytes)   RATE(Ks/s)
           5.0    I     59768832  IQ    119537664      11922.8
     
