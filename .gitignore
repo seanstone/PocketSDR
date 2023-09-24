@@ -14,3 +14,4 @@ __pycache__
 .bashrc
 .bashrc.swap
 .vscode/
+fftw_wisdom.txt

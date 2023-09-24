@@ -15,7 +15,7 @@
 #define ESC_COL   "\033[34m" // ANSI escape color = blue
 #define ESC_RES   "\033[0m"  // ANSI escape reset
 
-#define FFTW_WISDOM "../python/fftw_wisdom.txt"
+#define FFTW_WISDOM "fftw_wisdom.txt"
 
 // show usage -------------------------------------------------------------------
 static void show_usage(void)

@@ -19,7 +19,7 @@
 #define ESC_COL    "\033[34m" // ANSI escape color blue
 #define ESC_RES    "\033[0m"  // ANSI escape reset
 
-#define FFTW_WISDOM "../python/fftw_wisdom.txt"
+#define FFTW_WISDOM "fftw_wisdom.txt"
 
 // read IF data -----------------------------------------------------------------
 static int read_data(FILE *fp, int N, int IQ, sdr_cpx_t * buff, int ix)
