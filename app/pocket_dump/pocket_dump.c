@@ -58,7 +58,7 @@ static void sig_func(int sig)
 // print usage -----------------------------------------------------------------
 static void print_usage(void)
 {
-    printf("Usage: %s [-t tsec] [-r] [-p bus[,port]] [-c conf_file] [-q] [file [file]]\n",
+    fprintf(stderr, "Usage: %s [-t tsec] [-r] [-p bus[,port]] [-c conf_file] [-q] [file [file]]\n",
         PROG_NAME);
     exit(0);
 }

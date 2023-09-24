@@ -16,7 +16,7 @@
 // show usage ------------------------------------------------------------------
 static void show_usage(void)
 {
-    printf("Usage: %s [-s] [-a] [-h] [conf_file]\n", PROG_NAME);
+    fprintf(stderr, "Usage: %s [-s] [-a] [-h] [conf_file]\n", PROG_NAME);
     exit(0);
 }
 
@@ -106,7 +106,7 @@ int main(int argc, char **argv)
         if (!sdr_write_settings(file, bus, port, opt1)) {
             return -1;
         }
-        printf("%s device settings are changed%s.\n", SDR_DEV_NAME,
+        fprintf(stderr, "%s device settings are changed%s.\n", SDR_DEV_NAME,
             (opt1 & 1) ? " and saved to EEPROM" : "");
     }
     else {

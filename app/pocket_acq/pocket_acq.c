@@ -20,8 +20,8 @@
 // show usage -------------------------------------------------------------------
 static void show_usage(void)
 {
-    printf("Usage: pocket_acq [-sig sig] [-prn prn[,...]] [-tint tint]\n");
-    printf("       [-toff toff] [-f freq] [-fi freq] [-d freq] [-nz] file\n");
+    fprintf(stderr, "Usage: pocket_acq [-sig sig] [-prn prn[,...]] [-tint tint]\n");
+    fprintf(stderr, "       [-toff toff] [-f freq] [-fi freq] [-d freq] [-nz] file\n");
     exit(0);
 }
 
@@ -194,11 +194,11 @@ int main(int argc, char **argv)
                 &dop, &coff, &cn0)) {
             continue;
         }
-        printf("%sSIG= %-4s, %s= %3d, COFF= %8.5f ms, DOP= %5.0f Hz, C/N0= %4.1f dB-Hz%s\n",
+        fprintf(stderr, "%sSIG= %-4s, %s= %3d, COFF= %8.5f ms, DOP= %5.0f Hz, C/N0= %4.1f dB-Hz%s\n",
             (cn0 >= THRES_CN0) ? ESC_COL : "", sig, "PRN", prns[i], coff * 1e3,
             dop, cn0, (cn0 >= THRES_CN0) ? ESC_RES : "");
-        fflush(stdout);
+        fflush(stderr);
     }
-    printf("TIME = %.3f s\n", (sdr_get_tick() - tick) * 1e-3);
+    fprintf(stderr, "TIME = %.3f s\n", (sdr_get_tick() - tick) * 1e-3);
     return 0;
 }

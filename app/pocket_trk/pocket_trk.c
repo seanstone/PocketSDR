@@ -79,7 +79,7 @@ static void sync_stat(const sdr_ch_t *ch, char *stat)
 // print receiver channels status header ----------------------------------------
 static void print_head(void)
 {
-    printf("%9s %5s %3s %5s %8s %4s %-12s %10s %7s %11s %4s %4s %4s %4s %3s\n",
+    fprintf(stderr, "%9s %5s %3s %5s %8s %4s %-12s %10s %7s %11s %4s %4s %4s %4s %3s\n",
         "TIME(s)", "SIG", "PRN", "STATE", "LOCK(s)", "C/N0", "(dB-Hz)",
         "COFF(ms)", "DOP(Hz)", "ADR(cyc)", "SYNC", "#NAV", "#ERR", "#LOL",
         "NER");
@@ -91,7 +91,7 @@ static void print_stat(const sdr_ch_t *ch)
     char bar[16], stat[16];
     cn0_bar(ch->cn0, bar);
     sync_stat(ch, stat);
-    printf("%s%9.2f %5s %3d %5s %8.2f %4.1f %-13s%10.7f %7.1f %11.1f %s %4d %4d %4d %3d%s\n",
+    fprintf(stderr, "%s%9.2f %5s %3d %5s %8.2f %4.1f %-13s%10.7f %7.1f %11.1f %s %4d %4d %4d %3d%s\n",
         !strcmp(ch->state, "LOCK") ? ESC_COL : "", ch->time, ch->sig, ch->prn,
         ch->state, ch->lock * ch->T, ch->cn0, bar, ch->coff * 1e3, ch->fd,
         ch->adr, stat, ch->nav->count[0], ch->nav->count[1], ch->lost,
@@ -102,12 +102,12 @@ static void print_stat(const sdr_ch_t *ch)
 static int print_stats(sdr_ch_t **ch, int n, int ncol)
 {
     if (ncol > 0) {
-        printf(ESC_UP, ncol);
+        fprintf(stderr, ESC_UP, ncol);
     }
     for (int i = 0; i < n; i++) {
         print_stat(ch[i]);
     }
-    fflush(stdout);
+    fflush(stderr);
     return n;
 }
 
@@ -122,8 +122,8 @@ static void log_stat(const sdr_ch_t *ch)
 // show usage -------------------------------------------------------------------
 static void show_usage(void)
 {
-    printf("Usage: pocket_trk [-sig sig] [-prn prn[,...]] [-toff toff] [-f freq]\n");
-    printf("       [-fi freq] [-IQ] [-ti tint] [-log path] [-out path] [-q] [file]\n");
+    fprintf(stderr, "Usage: pocket_trk [-sig sig] [-prn prn[,...]] [-toff toff] [-f freq]\n");
+    fprintf(stderr, "       [-fi freq] [-IQ] [-ti tint] [-log path] [-out path] [-q] [file]\n");
     exit(0);
 }
 
@@ -315,7 +315,7 @@ int main(int argc, char **argv)
     sdr_log(3, "$LOG,%.3f,%s,%d,END FILE=%s", tt, "", 0, file);
     
     if (!quiet) {
-        printf("  TIME(s) = %.3f\n", tt);
+        fprintf(stderr, "  TIME(s) = %.3f\n", tt);
     }
     for (int i = 0; i < nprn; i++) {
         sdr_ch_free(ch[i]);
