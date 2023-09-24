@@ -1,4 +1,6 @@
-.PHONY: app-install app lib-install lib clean
+.PHONY: all app-install app lib-install lib clean
+
+all: app-install fftw-wisdom.txt
 
 app-install: app
 	cd app && $(MAKE) install
@@ -11,6 +13,9 @@ lib-install: lib
 
 lib:
 	cd lib/build && $(MAKE) -j
+
+fftw_wisdom.txt:
+	fftwf-wisdom -v -c -o $@
 
 clean:
 	cd app && $(MAKE) clean
