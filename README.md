@@ -178,6 +178,7 @@ uses external shared libraries of LIBFEC [5] and RTKLIB [6] in lib/ directory.
 These were built for Windows (64bit) and Linux for x86_64 CPU.
 
 --------------------------------------------------------------------------------
+
 ## **MacOS Execution Examples of Utility Programs and GNSS-SDR APs (without seting udev rules)** 
 
 ```
@@ -197,6 +198,7 @@ These were built for Windows (64bit) and Linux for x86_64 CPU.
     $ python3 ./python/pocket_acq.py ch1.bin -f 12 -fi 3 -sig L1CA -prn 26
 
 --------------------------------------------------------------------------------
+
 ## **Execution Examples of Utility Programs and GNSS-SDR APs (without seting udev rules)** 
 
 ```
