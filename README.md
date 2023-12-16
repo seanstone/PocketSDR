@@ -197,6 +197,22 @@ These were built for Windows (64bit) and Linux for x86_64 CPU.
     ...
     $ python3 ./python/pocket_acq.py ch1.bin -f 12 -fi 3 -sig L1CA -prn 26
 
+    $ python3 ./python/pocket_acq.py ch1.bin -f 12 -fi 3 -sig L1CA -prn 26 -3d
+
+    $ python3 ./python/pocket_acq.py ch2.bin -f 12 -sig L6D -prn 194 -p
+    
+    $ python3 ./python/pocket_trk.py L1_24M.bin -prn 1-32 -f 24 -fi 6
+    TIME(s)   SIG PRN STATE  LOCK(s) C/N0 (dB-Hz)        COFF(ms) DOP(Hz)    ADR(cyc) SYNC #NAV #ERR #LOL NER
+       2.20  L1CA   1  IDLE     0.00  0.0               0.0000000     0.0         0.0 ----    0    0    0   0
+       2.20  L1CA   2  IDLE     0.00  0.0               0.0000000     0.0         0.0 ----    0    0    0   0
+       2.20  L1CA   3  IDLE     0.00  0.0               0.0000000     0.0         0.0 ----    0    0    0   0
+       2.20  L1CA   4  IDLE     0.00  0.0               0.0000000     0.0         0.0 ----    0    0    0   0
+       ...
+    $ python3 ./python/pocket_trk.py L1_24M.bin -prn 194 -sig L1CA -f 24 -fi 6 -log trk.log  -p
+    ...
+    $ python3 ./python/pocket_trk.py L5_24M.bin -prn 13 -sig E5AI -f 24 -log trk.log -p -ts 0.2
+``` 
+
 --------------------------------------------------------------------------------
 
 ## **Execution Examples of Utility Programs and GNSS-SDR APs (without seting udev rules)** 
