@@ -178,7 +178,25 @@ uses external shared libraries of LIBFEC [5] and RTKLIB [6] in lib/ directory.
 These were built for Windows (64bit) and Linux for x86_64 CPU.
 
 --------------------------------------------------------------------------------
+## **MacOS Execution Examples of Utility Programs and GNSS-SDR APs (without seting udev rules)** 
 
+```
+    $ sudo ./app/pocket_conf/pocket_conf
+
+    $ sudo ./app/pocket_conf/pocket_conf ./conf/pocket_L1L6_12MHz.conf
+    Pocket SDR device settings are changed.
+
+    $ sudo ./app/pocket_dump/pocket_dump -t 5 ch1.bin ch2.bin
+    TIME(s)    T   CH1(Bytes)   T   CH2(Bytes)   RATE(Ks/s)
+        5.0    I     54525952  IQ    109051904      10812.2
+    $ python3 ./python/pocket_psd.py ch1.bin -f 12 -h
+    $ python3 ./python/pocket_acq.py ch1.bin -f 12 -fi 3 -sig L1CA -prn 1-32,193-199
+    SIG= L1CA, PRN=   1, COFF=  0.34350 ms, DOP= -1960 Hz, C/N0= 33.7 dB-Hz
+    SIG= L1CA, PRN=   2, COFF=  0.83308 ms, DOP=  -457 Hz, C/N0= 33.6 dB-Hz
+    ...
+    $ python3 ./python/pocket_acq.py ch1.bin -f 12 -fi 3 -sig L1CA -prn 26
+
+--------------------------------------------------------------------------------
 ## **Execution Examples of Utility Programs and GNSS-SDR APs (without seting udev rules)** 
 
 ```
