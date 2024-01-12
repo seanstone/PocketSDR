@@ -33,7 +33,7 @@
 #define ESC_VCUR   "\033[?25h" // ANSI escape show cursor
 #define ESC_HCUR   "\033[?25l" // ANSI escape hide cursor
 
-#define FFTW_WISDOM "../python/fftw_wisdom.txt"
+#define FFTW_WISDOM "fftw_wisdom.txt"
 
 // type definitions -------------------------------------------------------------
 struct rcv_tag;

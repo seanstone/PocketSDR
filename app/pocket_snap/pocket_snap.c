@@ -17,7 +17,7 @@
 #define MAX_DFREQ  500.0   // max freq. offset of ref oscillator (Hz)
 #define MAX_SAT    256     // max number of satellites
 
-#define FFTW_WISDOM "../python/fftw_wisdom.txt"
+#define FFTW_WISDOM "fftw_wisdom.txt"
 
 #define ROUND(x)   floor(x + 0.5)
 
