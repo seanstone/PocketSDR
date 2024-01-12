@@ -1,10 +1,11 @@
 #
-#  makefile for pocket_dump
+#  makefile for pocket_scan
 #
 
-CC = gcc
+CC = g++
 
 SRC = ../../src
+LIB = ../../lib
 BIN = ../../bin
 
 ifeq ($(OS),Windows_NT)

@@ -13,6 +13,7 @@ INCLUDE = -I$(SRC) -I$(LIB)/RTKLIB/src $(shell pkg-config --cflags fftw3f)
 
 ifeq ($(OS),Windows_NT)
     LDLIBS = -static $(LIB)/win32/librtk.a -lfftw3f -lwinmm -lws2_32
+    OPTIONS = -DWIN32 -DAVX2
 else
     LDLIBS = $(LIB)/linux/librtk.a $(shell pkg-config --libs fftw3f) -lfftw3f -lpthread -lm
 endif
