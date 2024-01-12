@@ -257,7 +257,7 @@ sdr_dev_t *sdr_dev_open(int bus, int port)
     sdr_dev_t *dev;
     struct sched_param param = {99};
     int ret;
-#if 1
+#if !__APPLE__
     // increase kernel memory size of USB stacks (16 MB-> 256 MB)
     if (system("echo 256 > /sys/module/usbcore/parameters/usbfs_memory_mb\n")) {
         fprintf(stderr, "Kernel memory size setting error\n");
@@ -277,7 +277,7 @@ sdr_dev_t *sdr_dev_open(int bus, int port)
         return NULL;
     }
     for (int i = 0; i < SDR_MAX_BUFF; i++) {
-#if 1
+#if !__APPLE__
         dev->data[i] = libusb_dev_mem_alloc(dev->usb->h, SDR_SIZE_BUFF);
 #else
         dev->data[i] = (uint8_t *)malloc(SDR_SIZE_BUFF);
