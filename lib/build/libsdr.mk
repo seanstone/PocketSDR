@@ -9,6 +9,8 @@
 CC  = gcc
 SRC = ../../src
 
+OS := $(shell uname)
+
 ifeq ($(OS),Windows_NT)
     INSTALL = ../win32
     OPTIONS = -DWIN32 -DAVX2
@@ -26,11 +28,15 @@ CFLAGS = -Ofast -march=native $(INCLUDE) $(OPTIONS) -Wall -fPIC -g
 
 OBJ = sdr_cmn.o sdr_func.o sdr_code.o sdr_code_gal.o
 
+ifeq ($(OS),Darwin)
+TARGET = libsdr.dylib
+else
 TARGET = libsdr.so
+endif
 
 all : $(TARGET)
 
-libsdr.so: $(OBJ)
+libsdr.dylib libsdr.so: $(OBJ)
 	$(CC) -shared -o $@ $(OBJ) $(LDLIBS)
 
 sdr_cmn.o : $(SRC)/sdr_cmn.c

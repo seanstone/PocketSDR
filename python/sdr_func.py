@@ -33,7 +33,7 @@ try:
     elif 'Linux' in env:
         libsdr = cdll.LoadLibrary(dir + '/../lib/linux/libsdr.so')
     else:
-        raise
+        libsdr = cdll.LoadLibrary(dir + '/../lib/linux/libsdr.dylib')
 except:
     libsdr = None
 else:
