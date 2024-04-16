@@ -361,7 +361,7 @@ static void mix_carr(const sdr_cpx_t *buff, int N, double phi, double step,
     double p = phi + 1e-6; // to avoid numerical error
     
     for (int i = 0; i < N; i++, p += step) {
-        uint8_t j = (uint8_t)p;
+        uint8_t j = (uint8_t)(char)p;
         data[i][0] = buff[i][0] * carr_tbl[j][0] - buff[i][1] * carr_tbl[j][1];
         data[i][1] = buff[i][0] * carr_tbl[j][1] + buff[i][1] * carr_tbl[j][0];
     }
