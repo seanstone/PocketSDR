@@ -25,7 +25,11 @@
 #include <CyAPI.h>
 #else
 #include <pthread.h>
+#ifdef __APPLE__
 #include <libusb.h>
+#else
+#include <libusb-1.0/libusb.h>
+#endif
 #endif // WIN32
 
 #ifdef __cplusplus
@@ -50,11 +54,11 @@ extern "C" {
 #define SDR_MAX_REG     11      // max number of registers in a SDR device 
 
 #ifdef WIN32
-#define SDR_MAX_BUFF    1024    // number of digital IF data buffer 
-#define SDR_SIZE_BUFF   (1<<14) // size of digital IF data buffer (bytes) 
+#define SDR_MAX_BUFF    1536    // number of digital IF data buffer 
+#define SDR_SIZE_BUFF   (1<<16) // size of digital IF data buffer (bytes) 
 #else
-#define SDR_MAX_BUFF    1024    // number of digital IF data buffer 
-#define SDR_SIZE_BUFF   (1<<15) // size of digital IF data buffer (bytes) 
+#define SDR_MAX_BUFF    1536    // number of digital IF data buffer 
+#define SDR_SIZE_BUFF   (1<<16) // size of digital IF data buffer (bytes) 
 #endif // WIN32
 
 // type definitions ----------------------------------------------------------
@@ -62,7 +66,7 @@ extern "C" {
 #ifdef WIN32
 
 typedef CCyUSBDevice sdr_usb_t;  // USB device type 
-typedef CCyBulkEndPoint sdr_ep_t;  // USB bulk endpoint type 
+typedef CCyBulkEndPoint sdr_ep_t; // USB bulk endpoint type 
 
 typedef struct {                // SDR device type 
     sdr_usb_t *usb;             // USB device 
