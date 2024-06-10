@@ -356,4 +356,5 @@ April 28, 2020
 
 * Add .gitignore
 * Submodules for LDPC-codes and libfec
+* Ignore untracked in libfec submodule
 * Executable python scripts
