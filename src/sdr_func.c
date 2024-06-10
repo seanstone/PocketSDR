@@ -247,7 +247,11 @@ sdr_buff_t *sdr_read_data(const char *file, double fs, int IQ, double T,
 #else
     fpos_t pos;
     fgetpos(fp, &pos);
+#ifdef __APPLE__
+    size_t size = (size_t)pos;
+#else
     size_t size = (size_t)(pos.__pos);
+#endif
 #endif
     rewind(fp);
     
@@ -263,7 +267,11 @@ sdr_buff_t *sdr_read_data(const char *file, double fs, int IQ, double T,
     pos = (size_t)off;
     fsetpos(fp, &pos);
 #else
+#ifdef __APPLE__
+    pos = (off_t)off;
+#else
     pos.__pos = (__off_t)off;
+#endif
     fsetpos(fp, &pos);
 #endif
     

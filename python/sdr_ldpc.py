@@ -36,7 +36,7 @@ dir = os.path.dirname(__file__)
 try:
     if 'Windows' in env:
         libldpc = cdll.LoadLibrary(dir + '/../lib/win32/libldpc.so')
-    elif 'Linux' in env:
+    elif 'Linux' in env or 'macOS' in env:
         libldpc = cdll.LoadLibrary(dir + '/../lib/linux/libldpc.so')
     else:
         raise

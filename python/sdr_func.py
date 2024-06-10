@@ -31,7 +31,7 @@ env = platform.platform()
 try:
     if 'Windows' in env:
         libsdr = cdll.LoadLibrary(dir + '/../lib/win32/libsdr.so')
-    elif 'Linux' in env:
+    elif 'Linux' in env or 'macOS' in env:
         libsdr = cdll.LoadLibrary(dir + '/../lib/linux/libsdr.so')
     else:
         raise

@@ -27,7 +27,7 @@ dir = os.path.dirname(__file__)
 try:
     if 'Windows' in env:
         libfec = cdll.LoadLibrary(dir + '/../lib/win32/libfec.so')
-    elif 'Linux' in env:
+    elif 'Linux' in env or 'macOS' in env:
         libfec = cdll.LoadLibrary(dir + '/../lib/linux/libfec.so')
     else:
         raise

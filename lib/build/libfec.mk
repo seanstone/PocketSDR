@@ -26,9 +26,13 @@ all :
 	./configure $(CONF_OPT); \
 	sed 's/-lc//' < makefile > makefile.p; \
 	mv makefile.p makefile; \
-	make; \
-	cd $$DIR; \
-	cp $(SRC)/libfec.so $(SRC)/libfec.a .
+	make
+ifeq ($(OS),Darwin)
+	cp $(SRC)/libfec.dylib libfec.so
+else
+	cp $(SRC)/libfec.so .
+endif
+	cp $(SRC)/libfec.a .
 
 clean:
 	DIR=`pwd`; \

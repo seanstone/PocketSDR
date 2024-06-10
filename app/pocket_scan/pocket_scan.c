@@ -17,7 +17,11 @@
 #include <windows.h>
 #include <CyAPI.h>
 #else
+#ifdef __APPLE__
+#include <libusb.h>
+#else
 #include <libusb-1.0/libusb.h>
+#endif
 #endif
 
 // constants and macros ----------------------------------------------------------------

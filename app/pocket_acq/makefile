@@ -21,6 +21,9 @@ endif
 ifeq ($(shell uname -m),aarch64)
     OPTIONS = -DNEON
 endif
+ifeq ($(shell uname -m),arm64)
+    OPTIONS = -DNEON
+endif
 
 WARNOPT = -Wall -Wextra -Wno-unused-parameter
 

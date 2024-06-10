@@ -22,6 +22,9 @@ endif
 ifeq ($(shell uname -m),aarch64)
     OPTIONS = -DNEON
 endif
+ifeq ($(shell uname -m),arm64)
+    OPTIONS = -DNEON
+endif
 
 INCLUDE = -I$(SRC) -I../RTKLIB/src -I../cyusb $(shell pkg-config --cflags libusb-1.0) $(shell pkg-config --cflags fftw3f)
 #CFLAGS = -Ofast -march=native $(INCLUDE) $(OPTIONS) -Wall -fPIC -g

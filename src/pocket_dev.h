@@ -28,7 +28,11 @@
 #include <CyAPI.h>
 #else
 #include <pthread.h>
+#ifdef __APPLE__
+#include <libusb.h>
+#else
 #include <libusb-1.0/libusb.h>
+#endif
 #endif // WIN32
 
 #ifdef __cplusplus

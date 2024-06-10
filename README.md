@@ -360,3 +360,4 @@ April 28, 2020
 * Executable python scripts
 * Use pkg-config for compiler args
 * Top-level makefile
+* macOS support
