@@ -13,9 +13,9 @@ ifeq ($(OS),Windows_NT)
     OPTIONS = -DWIN32
     LDLIBS = -static $(LIB)/cyusb/CyAPI.a -lsetupapi
 else
-    INCLUDE =
+    INCLUDE = $(shell pkg-config --cflags libusb-1.0)
     OPTIONS =
-    LDLIBS = -lusb-1.0
+    LDLIBS = $(shell pkg-config --libs libusb-1.0)
 endif
 
 WARNOPT = -Wall -Wextra

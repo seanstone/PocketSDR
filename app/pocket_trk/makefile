@@ -16,10 +16,10 @@ ifeq ($(OS),Windows_NT)
              $(LIB)/win32/libldpc.a -lfftw3f -lwinmm -lws2_32 $(LIB)/cyusb/CyAPI.a \
              -lsetupapi -lavrt -lwinmm
 else
-    INCLUDE = -I$(SRC) -I$(LIB)/RTKLIB/src
+    INCLUDE = -I$(SRC) -I$(LIB)/RTKLIB/src $(shell pkg-config --cflags fftw3f) $(shell pkg-config --cflags libusb-1.0)
     LIBSDR = $(LIB)/linux/libsdr.a
     LDLIBS = $(LIBSDR) $(LIB)/linux/librtk.a $(LIB)/linux/libfec.a \
-             $(LIB)/linux/libldpc.a -lfftw3f -lpthread -lm -lusb-1.0
+             $(LIB)/linux/libldpc.a $(shell pkg-config --libs fftw3f) -lpthread -lm $(shell pkg-config --libs libusb-1.0)
     OPTIONS = -DAVX2 -mavx2 -mfma
 endif
 ifeq ($(shell uname -m),aarch64)

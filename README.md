@@ -358,3 +358,4 @@ April 28, 2020
 * Submodules for LDPC-codes and libfec
 * Ignore untracked in libfec submodule
 * Executable python scripts
+* Use pkg-config for compiler args

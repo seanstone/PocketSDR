@@ -13,9 +13,9 @@ ifeq ($(OS),Windows_NT)
     OPTIONS = -DWIN32
     LDLIBS = -static $(LIB)/win32/libsdr.a $(LIB)/cyusb/CyAPI.a -lsetupapi -lavrt -lwinmm
 else
-    INCLUDE = -I$(SRC)
+    INCLUDE = -I$(SRC) $(shell pkg-config --cflags libusb-1.0)
     OPTIONS =
-    LDLIBS = $(LIB)/linux/libsdr.a -lusb-1.0 -lpthread
+    LDLIBS = $(LIB)/linux/libsdr.a $(shell pkg-config --libs libusb-1.0) -lpthread
 endif
 
 WARNOPT = -Wall -Wextra -Wno-missing-field-initializers -Wno-unused-parameter
