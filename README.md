@@ -1,5 +1,17 @@
 # **Pocket SDR - An Open-Source GNSS SDR, ver. 0.12**
 
+## **Modifications**
+
+* Add .gitignore
+* Submodules for LDPC-codes and libfec
+* Ignore untracked in libfec submodule
+* Executable python scripts
+* Use pkg-config for compiler args
+* Top-level makefile
+* macOS support
+
+--------------------------------------------------------------------------------
+
 ## **Overview**
 
 Pocket SDR is an open-source GNSS (Global Navigation Satellite System) receiver
@@ -349,15 +361,3 @@ April 28, 2020
                    Support NB-LDCP error correction for BDS B1C, B2a and B2b
 * 2024-05-28  0.12 Performance optimized.
                    Support PVT generation, RTCM3 and NMEA outputs
-
---------------------------------------------------------------------------------
-
-## **Modifications**
-
-* Add .gitignore
-* Submodules for LDPC-codes and libfec
-* Ignore untracked in libfec submodule
-* Executable python scripts
-* Use pkg-config for compiler args
-* Top-level makefile
-* macOS support
