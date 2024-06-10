@@ -349,3 +349,9 @@ April 28, 2020
                    Support NB-LDCP error correction for BDS B1C, B2a and B2b
 * 2024-05-28  0.12 Performance optimized.
                    Support PVT generation, RTCM3 and NMEA outputs
+
+--------------------------------------------------------------------------------
+
+## **Modifications**
+
+* Add .gitignore
