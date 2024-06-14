@@ -17,3 +17,5 @@ __pycache__
 .vscode/
 fftw_wisdom.txt
 fftw_wisdom
+fp-info-cache
+.DS_Store
