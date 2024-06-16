@@ -1,4 +1,6 @@
 (sym_lib_table
   (version 7)
   (lib (name "pocket_sdr_v2.3-eagle-import")(type "KiCad")(uri "${KIPRJMOD}/pocket_sdr_v2.3-eagle-import.kicad_sym")(options "")(descr ""))
+  (lib (name "TCBT-2R5G+")(type "KiCad")(uri "${KIPRJMOD}/lib/LIB_TCBT-2R5G+/TCBT-2R5G+.kicad_sym")(options "")(descr ""))
+  (lib (name "U_FL-R-SMT-1_80_")(type "KiCad")(uri "${KIPRJMOD}/lib/LIB_U.FL-R-SMT-1_80_/U_FL-R-SMT-1_80_.kicad_sym")(options "")(descr ""))
 )
