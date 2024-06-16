@@ -19,3 +19,7 @@ fftw_wisdom.txt
 fftw_wisdom
 fp-info-cache
 .DS_Store
+*-backups
+*.kicad_sch_old
+*.lck
+~*
