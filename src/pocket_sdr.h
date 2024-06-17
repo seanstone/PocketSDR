@@ -24,6 +24,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <stdint.h>
+#include <kiss_fft.h>
 #include <fftw3.h>
 #include <pthread.h>
 #include "rtklib.h"

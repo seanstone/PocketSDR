@@ -9,13 +9,13 @@ LIB = ../../lib
 BIN = ../../bin
 
 ifeq ($(OS),Windows_NT)
-    INCLUDE = -I$(SRC) -I$(LIB)/cyusb
+    INCLUDE = -I$(SRC) -I$(LIB)/cyusb -I$(LIB)/kissfft
     OPTIONS = -DWIN32
     LDLIBS = -static $(LIB)/win32/libsdr.a $(LIB)/cyusb/CyAPI.a -lsetupapi -lavrt -lwinmm
 else
-    INCLUDE = -I$(SRC) $(shell pkg-config --cflags libusb-1.0)
+    INCLUDE = -I$(SRC) $(shell pkg-config --cflags libusb-1.0) -I$(LIB)/kissfft
     OPTIONS =
-    LDLIBS = $(LIB)/linux/libsdr.a $(shell pkg-config --libs libusb-1.0) -lpthread
+    LDLIBS = $(LIB)/linux/libsdr.a $(shell pkg-config --libs libusb-1.0) -lpthread $(LIB)/linux/libkissfft-float.a
 endif
 
 WARNOPT = -Wall -Wextra -Wno-missing-field-initializers -Wno-unused-parameter

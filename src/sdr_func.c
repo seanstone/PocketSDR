@@ -51,6 +51,7 @@
 // global variables ------------------------------------------------------------
 static sdr_cpx16_t mix_tbl[NTBL*256] = {{0,0}}; // carrier-mixed-data LUT
 static fftwf_plan fftw_plans[MAX_FFTW_PLAN][2] = {{0}}; // FFTW plan buffer
+static kiss_fft_cfg kiss_fft_cfgs[MAX_FFTW_PLAN][2] = {{0}};
 static int fftw_size[MAX_FFTW_PLAN] = {0}; // FFTW plan sizes
 static int log_lvl = 3;           // log level
 static stream_t *log_str = NULL;  // log stream
@@ -597,7 +598,7 @@ void sdr_corr_std_cpx(const sdr_cpx_t *buff, int len_buff, int ix, int N,
 }
 
 // get FFTW plan ---------------------------------------------------------------
-static int get_fftw_plan(int N, fftwf_plan *plan)
+static int get_fftw_plan(int N, kiss_fft_cfg *plan)
 {
     static pthread_mutex_t mtx = PTHREAD_MUTEX_INITIALIZER;
     
@@ -605,17 +606,19 @@ static int get_fftw_plan(int N, fftwf_plan *plan)
     
     for (int i = 0; i < MAX_FFTW_PLAN; i++) {
         if (fftw_size[i] == 0) {
-            sdr_cpx_t *cpx1 = sdr_cpx_malloc(N);
-            sdr_cpx_t *cpx2 = sdr_cpx_malloc(N);
-            fftw_plans[i][0] = fftwf_plan_dft_1d(N, cpx1, cpx2, FFTW_FORWARD,  FFTW_FLAG);
-            fftw_plans[i][1] = fftwf_plan_dft_1d(N, cpx2, cpx1, FFTW_BACKWARD, FFTW_FLAG);
+            // sdr_cpx_t *cpx1 = sdr_cpx_malloc(N);
+            // sdr_cpx_t *cpx2 = sdr_cpx_malloc(N);
+            // fftw_plans[i][0] = fftwf_plan_dft_1d(N, cpx1, cpx2, FFTW_FORWARD,  FFTW_FLAG);
+            // fftw_plans[i][1] = fftwf_plan_dft_1d(N, cpx2, cpx1, FFTW_BACKWARD, FFTW_FLAG);
+            kiss_fft_cfgs[i][0] = kiss_fft_alloc(N, false, NULL, NULL);
+            kiss_fft_cfgs[i][1] = kiss_fft_alloc(N, true, NULL, NULL);
             fftw_size[i] = N;
-            sdr_cpx_free(cpx1);
-            sdr_cpx_free(cpx2);
+            // sdr_cpx_free(cpx1);
+            // sdr_cpx_free(cpx2);
         }
         if (fftw_size[i] == N) {
-            plan[0] = fftw_plans[i][0];
-            plan[1] = fftw_plans[i][1];
+            plan[0] = kiss_fft_cfgs[i][0];
+            plan[1] = kiss_fft_cfgs[i][1];
             pthread_mutex_unlock(&mtx);
             return 1;
         }
@@ -629,7 +632,7 @@ static int get_fftw_plan(int N, fftwf_plan *plan)
 static void corr_fft(const sdr_cpx16_t *IQ, const sdr_cpx_t *code_fft, int N,
     sdr_cpx_t *corr)
 {
-    fftwf_plan plan[2];
+    kiss_fft_cfg plan[2];
     
     if (!get_fftw_plan(N, plan)) return;
     sdr_cpx_t *cpx = sdr_cpx_malloc(N * 2);
@@ -638,9 +641,11 @@ static void corr_fft(const sdr_cpx16_t *IQ, const sdr_cpx_t *code_fft, int N,
         cpx[i][1] = IQ[i].Q * SDR_CSCALE;
     }
     // ifft(fft(data) * code_fft) / N^2 
-    fftwf_execute_dft(plan[0], cpx, cpx + N);
+    // fftwf_execute_dft(plan[0], cpx, cpx + N);
+    kiss_fft(plan[0], (const kiss_fft_cpx *)cpx, (kiss_fft_cpx *)(cpx + N));
     sdr_cpx_mul(cpx + N, code_fft, N, 1.0f / N / N, cpx);
-    fftwf_execute_dft(plan[1], cpx, corr);
+    // fftwf_execute_dft(plan[1], cpx, corr);
+    kiss_fft(plan[1], (const kiss_fft_cpx *)cpx, (kiss_fft_cpx *)corr);
     
     sdr_cpx_free(cpx);
 }

@@ -17,7 +17,7 @@ ifeq ($(OS),Windows_NT)
 else
     INSTALL = ../linux
     OPTIONS = -DAVX2 -mavx2 -mfma
-    LDLIBS = ./librtk.a ./libfec.a ./libldpc.a $(shell pkg-config --libs libusb-1.0) $(shell pkg-config --libs fftw3f)
+    LDLIBS = ./librtk.a ./libfec.a ./libldpc.a $(shell pkg-config --libs libusb-1.0) $(shell pkg-config --libs fftw3f) ../kissfft/libkissfft-float.a
 endif
 ifeq ($(shell uname -m),aarch64)
     OPTIONS = -DNEON
@@ -26,7 +26,7 @@ ifeq ($(shell uname -m),arm64)
     OPTIONS = -DNEON
 endif
 
-INCLUDE = -I$(SRC) -I../RTKLIB/src -I../cyusb $(shell pkg-config --cflags libusb-1.0) $(shell pkg-config --cflags fftw3f)
+INCLUDE = -I$(SRC) -I../RTKLIB/src -I../cyusb $(shell pkg-config --cflags libusb-1.0) $(shell pkg-config --cflags fftw3f) -I../kissfft
 #CFLAGS = -Ofast -march=native $(INCLUDE) $(OPTIONS) -Wall -fPIC -g
 CFLAGS = -Ofast $(INCLUDE) $(OPTIONS) -Wall -fPIC -g
 
