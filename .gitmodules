@@ -5,3 +5,6 @@
 	path = lib/libfec
 	url = https://github.com/quiet/libfec.git
 	ignore = untracked
+[submodule "lib/kissfft"]
+	path = lib/kissfft
+	url = https://github.com/mborgerding/kissfft.git
