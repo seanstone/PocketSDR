@@ -15,7 +15,7 @@ ifeq ($(OS),Windows_NT)
 else
     INCLUDE = $(shell pkg-config --cflags libusb-1.0)
     OPTIONS =
-    LDLIBS = $(shell pkg-config --libs libusb-1.0)
+    LDLIBS = $(shell pkg-config --libs libusb-1.0) -lusb-1.0
 endif
 
 WARNOPT = -Wall -Wextra

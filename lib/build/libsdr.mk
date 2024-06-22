@@ -17,7 +17,7 @@ ifeq ($(OS),Windows_NT)
 else
     INSTALL = ../linux
     OPTIONS = -DAVX2 -mavx2 -mfma
-    LDLIBS = ./librtk.a ./libfec.a ./libldpc.a $(shell pkg-config --libs libusb-1.0) $(shell pkg-config --libs fftw3f)
+    LDLIBS = ./librtk.a ./libfec.a ./libldpc.a $(shell pkg-config --libs libusb-1.0) -lusb-1.0 $(shell pkg-config --libs fftw3f) -lfftw3f 
 endif
 
 ARCH = $(shell $$CC -dumpmachine | cut -d- -f1)

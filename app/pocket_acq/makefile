@@ -15,13 +15,18 @@ ifeq ($(OS),Windows_NT)
              -lws2_32
     OPTIONS = -DWIN32 -DAVX2 -mavx2 -mfma
 else
-    LDLIBS = $(LIB)/linux/libsdr.a $(LIB)/linux/librtk.a $(shell pkg-config --libs fftw3f) -lpthread -lm
+    LDLIBS = $(LIB)/linux/libsdr.a $(LIB)/linux/librtk.a $(shell pkg-config --libs fftw3f) -lfftw3f -lpthread -lm
     OPTIONS = -DAVX2 -mavx2 -mfma
 endif
-ifeq ($(shell uname -m),aarch64)
+
+ARCH = $(shell $$CC -dumpmachine | cut -d- -f1)
+ifeq ($(ARCH),aarch64)
     OPTIONS = -DNEON
 endif
-ifeq ($(shell uname -m),arm64)
+ifeq ($(ARCH),arm64)
+    OPTIONS = -DNEON
+endif
+ifeq ($(ARCH),arm)
     OPTIONS = -DNEON
 endif
 

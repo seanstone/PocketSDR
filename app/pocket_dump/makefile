@@ -15,7 +15,7 @@ ifeq ($(OS),Windows_NT)
 else
     INCLUDE = -I$(SRC) -I$(LIB)/RTKLIB/src $(shell pkg-config --cflags libusb-1.0) $(shell pkg-config --cflags fftw3f)
     OPTIONS =
-    LDLIBS = $(LIB)/linux/libsdr.a $(shell pkg-config --libs libusb-1.0) -lpthread
+    LDLIBS = $(LIB)/linux/libsdr.a $(shell pkg-config --libs libusb-1.0) -lusb-1.0 -lpthread
 endif
 
 WARNOPT = -Wall -Wextra -Wno-missing-field-initializers -Wno-unused-parameter
