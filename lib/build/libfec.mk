@@ -14,8 +14,11 @@ else
     INSTALL = ../linux
 endif
 
-ifeq ($(shell uname -m),aarch64)
-    CONF_OPT = --build=arm
+ifeq ($(shell $$CC -dumpmachine | cut -d- -f1),aarch64)
+    CONF_OPT = --build=arm --host=$(shell uname -m)
+endif
+ifeq ($(shell $$CC -dumpmachine | cut -d- -f1),arm)
+    CONF_OPT = --build=arm --host=$(shell uname -m)
 endif
 
 TARGET = libfec.so libfec.a
