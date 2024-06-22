@@ -14,10 +14,12 @@ else
     INSTALL = ../linux
 endif
 
-ifeq ($(shell $$CC -dumpmachine | cut -d- -f1),aarch64)
+ARCH = $(shell $$CC -dumpmachine | cut -d- -f1)
+
+ifeq ($(ARCH),aarch64)
     CONF_OPT = --build=arm --host=$(shell uname -m)
 endif
-ifeq ($(shell $$CC -dumpmachine | cut -d- -f1),arm)
+ifeq ($(ARCH),arm)
     CONF_OPT = --build=arm --host=$(shell uname -m)
 endif
 
