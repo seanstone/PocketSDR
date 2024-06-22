@@ -2,7 +2,7 @@
 #  makefile for pocket_conf
 #
 
-CC = g++
+CC ?= g++
 
 SRC = ../../src
 LIB = ../../lib

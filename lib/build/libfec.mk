@@ -6,6 +6,7 @@
 #! $ git clone https://github.com/quiet/libfec libfec
 
 #! specify directory of LIBFEC source tree
+CC  ?= g++
 SRC = ../libfec
 
 ifeq ($(OS),Windows_NT)
@@ -14,7 +15,7 @@ else
     INSTALL = ../linux
 endif
 
-ARCH = $(shell $$CC -dumpmachine | cut -d- -f1)
+ARCH = $(shell $(CC) -dumpmachine | cut -d- -f1)
 
 ifeq ($(ARCH),aarch64)
     CONF_OPT = --build=arm --host=$(shell uname -m)

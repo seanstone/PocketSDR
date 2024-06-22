@@ -2,7 +2,7 @@
 #  makefile for pocket_scan
 #
 
-CC = g++
+CC ?= g++
 
 SRC = ../../src
 LIB = ../../lib

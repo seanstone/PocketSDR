@@ -2,7 +2,7 @@
 #  makefile for pocket_trk, fftw_wisdom
 #
 
-CC = g++
+CC ?= g++
 
 SRC = ../../src
 LIB = ../../lib
@@ -23,7 +23,7 @@ else
     OPTIONS = -DAVX2 -mavx2 -mfma
 endif
 
-ARCH = $(shell $$CC -dumpmachine | cut -d- -f1)
+ARCH = $(shell $(CC) -dumpmachine | cut -d- -f1)
 ifeq ($(ARCH),aarch64)
     OPTIONS = -DNEON
 endif

@@ -2,7 +2,7 @@
 #  makefile for pocket_snap
 #
 
-CC = gcc
+CC ?= gcc
 
 SRC = ../../src
 LIB = ../../lib
@@ -14,11 +14,11 @@ ifeq ($(OS),Windows_NT)
     LDLIBS = $(LIB)/win32/libsdr.a $(LIB)/win32/librtk.a -lfftw3f -lwinmm -lws2_32
     OPTIONS = -DWIN32 -DAVX2 -mavx2 -mfma
 else
-    LDLIBS = $(LIB)/linux/libsdr.a $(LIB)/linux/librtk.a $(shell pkg-config --libs fftw3f) -lfftw3f -lfftw3f_threads -lpthread -lm
+    LDLIBS = $(LIB)/linux/libsdr.a $(LIB)/linux/librtk.a $(shell pkg-config --libs fftw3f) -lfftw3f -lpthread -lm
     OPTIONS = -DAVX2 -mavx2 -mfma
 endif
 
-ARCH = $(shell $$CC -dumpmachine | cut -d- -f1)
+ARCH = $(shell $(CC) -dumpmachine | cut -d- -f1)
 ifeq ($(ARCH),aarch64)
     OPTIONS = -DNEON
 endif

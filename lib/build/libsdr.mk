@@ -6,7 +6,7 @@
 #! $ pacman -S mingw-w64-x86_64-fftw (MINGW64)
 #! $ sudo apt install libfftw3-dev   (Ubuntu)
 
-CC  = g++
+CC  ?= g++
 SRC = ../../src
 
 ifeq ($(OS),Windows_NT)
@@ -20,7 +20,7 @@ else
     LDLIBS = ./librtk.a ./libfec.a ./libldpc.a $(shell pkg-config --libs libusb-1.0) -lusb-1.0 $(shell pkg-config --libs fftw3f) -lfftw3f 
 endif
 
-ARCH = $(shell $$CC -dumpmachine | cut -d- -f1)
+ARCH = $(shell $(CC) -dumpmachine | cut -d- -f1)
 ifeq ($(ARCH),aarch64)
     OPTIONS = -DNEON
 endif
